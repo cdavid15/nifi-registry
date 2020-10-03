@@ -6,7 +6,7 @@ image allowing configuration of the GitFlowPersistenceProvider via environment
 variables with automatic cloning of remote repositories on container startup.
 
 The configuration applied will allow for a remote repository (and optional
-branch) to be checkout out upon startup of the container which is primarily to
+branch) to be checked out upon startup of the container which is primarily to
 support the use case of running NiFi Registry as a service in docker swarm
 without the need for volume mounts and specific node constraints.
 
@@ -48,7 +48,6 @@ docker run --name registry -p 18080:18080 -d \
 --env GIT_REMOTE_ACCESS_USER=my-user \
 --env GIT_REMOTE_ACCESS_TOKEN=my-access-token \
 cdavid15/nifi-registry:latest
-
 ```
 
 The following command is equivalent to the above:
@@ -122,7 +121,7 @@ docker run --name registry -p 18080:18080 -d cdavid15/nifi-registry:latest
 
 ## Inspired By
 
-This simplified and specific image has been inspired the approaches used in
+This simplified and specific image has been inspired by the approaches used in
 both [michalklempa/docker-nifi-registry](https://github.com/michalklempa/docker-nifi-registry)
 and [quintoandar/docker-nifi](https://github.com/quintoandar/docker-nifi)
 custom images specifically in relation to using environment variables for
