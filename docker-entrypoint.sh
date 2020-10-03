@@ -6,6 +6,12 @@ FLOW_STORAGE_DIRECTORY="flow_storage"
 
 echo "Preparing the Git Flow Provider Repository"
 
+## Set the Git User details
+if [[ -n "$GIT_CONFIG_USER_NAME" ]]; then
+  git config --global user.name $GIT_CONFIG_USER_NAME
+  git config --global user.email $GIT_CONFIG_USER_EMAIL
+fi
+
 ## If envrinoment variable GIT_REMOTE_REPOSITORY is defined prepare a remote git repo
 if [[ -n "$GIT_REMOTE_REPOSITORY" ]]; then
 
@@ -18,12 +24,6 @@ if [[ -n "$GIT_REMOTE_REPOSITORY" ]]; then
   ## Store the credentials for the initial checkout
   git config --global credential.$GIT_REMOTE_REPOSITORY.username $GIT_REMOTE_ACCESS_USER
   git config --global credential.$GIT_REMOTE_REPOSITORY.helper "!f() { echo \"password=$GIT_REMOTE_ACCESS_TOKEN\"; }; f"
-
-  ## Set the Git User details
-  if [[ -n "$GIT_CONFIG_USER_NAME" ]]; then
-    git config --global user.name $GIT_CONFIG_USER_NAME
-    git config --global user.email $GIT_CONFIG_USER_EMAIL
-  fi
 
   ## If the GIT_REMOTE_BRANCH environment variable is not supplied default to master branch
   if [[ -z "$GIT_REMOTE_BRANCH" ]]; then
