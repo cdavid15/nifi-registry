@@ -8,8 +8,8 @@ echo "Preparing the Git Flow Provider Repository"
 
 ## Set the Git User details
 if [[ -n "$GIT_CONFIG_USER_NAME" ]]; then
-  git config --global user.name $GIT_CONFIG_USER_NAME
-  git config --global user.email $GIT_CONFIG_USER_EMAIL
+  git config --global user.name "$GIT_CONFIG_USER_NAME"
+  git config --global user.email "$GIT_CONFIG_USER_EMAIL"
 fi
 
 ## If envrinoment variable GIT_REMOTE_REPOSITORY is defined prepare a remote git repo
