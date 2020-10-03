@@ -19,6 +19,12 @@ if [[ -n "$GIT_REMOTE_REPOSITORY" ]]; then
   git config --global credential.$GIT_REMOTE_REPOSITORY.username $GIT_REMOTE_ACCESS_USER
   git config --global credential.$GIT_REMOTE_REPOSITORY.helper "!f() { echo \"password=$GIT_REMOTE_ACCESS_TOKEN\"; }; f"
 
+  ## Set the Git User details
+  if [[ -n "$GIT_CONFIG_USER_NAME" ]]; then
+    git config --global user.name $GIT_CONFIG_USER_NAME
+    git config --global user.email $GIT_CONFIG_USER_EMAIL
+  fi
+
   ## If the GIT_REMOTE_BRANCH environment variable is not supplied default to master branch
   if [[ -z "$GIT_REMOTE_BRANCH" ]]; then
     GIT_REMOTE_BRANCH="master";

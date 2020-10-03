@@ -19,6 +19,8 @@ The following environment variables can be provided:
 | GIT_REMOTE_TO_PUSH       | Remote name if different from `origin`                                          |
 | GIT_REMOTE_ACCESS_USER   | The user account used to access the remote git repository                       |
 | GIT_REMOTE_ACCESS_TOKEN  | The access token for the user defined by the `GIT_REMOTE_ACCESS_USER` variable  |
+| GIT_CONFIG_USER_NAME     | The user name to be set in global git config (user.name)                        |
+| GIT_CONFIG_USER_EMAIL    | The email to be set in global git config (user.email)                           |
 
 Upon container startup the `docker-entrypoint.sh` will be executed which
 carries out 3 primary functions:
@@ -90,6 +92,23 @@ cdavid15/nifi-registry:latest
 
 This allows a MR / PR workflow between different environments which may be
 required within the organisation.
+
+### Configure Git user name and email address
+
+To customise the git user and email details when commits are made by the registry
+simply provide the additional environment variables:
+
+```bash
+docker run --name registry -p 18080:18080 -d \
+--env GIT_REMOTE_REPOSITORY=https://gitlab.com/cdavid15/nifi-registry-repo.git \
+--env GIT_REMOTE_BRANCH=master \
+--env GIT_REMOTE_TO_PUSH=origin \
+--env GIT_REMOTE_ACCESS_USER=my-user \
+--env GIT_REMOTE_ACCESS_TOKEN=my-access-token \
+--env GIT_CONFIG_USER_NAME='NiFi Registry' \
+--env GIT_CONFIG_USER_EMAIL='nifi-registry@test.com' \
+cdavid15/nifi-registry:latest
+```
 
 ### Setting up a empty local repository
 
